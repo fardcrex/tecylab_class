@@ -1,34 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:tecylab_clase_04/core/theme/app_theme.dart';
+import 'package:tecylab_clase_04/feature/destinations/domain/get_destinations_use_case.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/destinations_list_page.dart';
+import 'package:themexpert/themexpert.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool darkMode = false;
+
+  void changeDarkMode() {
+    setState(() {
+      darkMode = !darkMode;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          primary: const Color(0xFF6617A3),
-        ),
-        textTheme: const TextTheme(
-          displayLarge: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 33, 76, 231),
-          ),
-          bodyLarge: TextStyle(
-            fontSize: 16,
-            color: Colors.black,
-          ),
-        ),
-      ),
-      routes: {
-        '/destination': (context) => const DestinationsListPage(),
-      },
-      home: const SafeArea(child: DestinationsListPage()),
-    );
+    return ThemeXConfiguration(
+        darkMode: darkMode,
+        builder: (context) {
+          return ThemeXWrapper(
+              theme: AppTheme(context),
+              builder: (context) {
+                return MaterialApp(
+                  home: SafeArea(
+                      child: DestinationsListPage(
+                    darkMode: darkMode,
+                    onTap: changeDarkMode,
+                    getDestinationsUseCase: const GetDestinationsUseCase(),
+                  )),
+                );
+              });
+        });
   }
 }

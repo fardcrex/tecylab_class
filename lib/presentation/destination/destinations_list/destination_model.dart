@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:tecylab_clase_04/feature/destinations/domain/destination_entity.dart';
+
 class DestinationModel {
   final String countryFrom;
   final String countryTo;
@@ -22,4 +25,21 @@ class DestinationModel {
     required this.travelMode,
     required this.priceMode,
   });
+}
+
+extension DestinationEntityMapperToModel on DestinationEntity {
+  DestinationModel toModel(BuildContext context) {
+    return DestinationModel(
+      countryFrom: 'Desde Lima a',
+      countryTo: name ?? 'Lugar desconocido',
+      imageCountryTo: imageUrl,
+      primaryPrice: 'USD 290.12',
+      secondaryPryce: 'PEN 1,000',
+      priceDiscount: '25% dcto.',
+      dateTravel: 'DIC-MAR-ABR',
+      infoDestination: 'Tasas incluidas - Vuelo directo - 100 cupos',
+      travelMode: 'Ida y vuelta',
+      priceMode: 'Economy',
+    );
+  }
 }

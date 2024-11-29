@@ -1,60 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:tecylab_clase_04/core/theme/app_theme.dart';
+import 'package:tecylab_clase_04/feature/destinations/domain/get_destinations_use_case.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/destination_model.dart';
-import 'package:tecylab_clase_04/presentation/destination/destinations_list/views/data_destination_view.dart';
+import 'package:tecylab_clase_04/presentation/destination/destinations_list/state/destination_state.dart';
+import 'package:tecylab_clase_04/presentation/destination/destinations_list/views/destination_data_view.dart';
+import 'package:tecylab_clase_04/presentation/destination/destinations_list/views/destination_empty_view.dart';
+import 'package:tecylab_clase_04/presentation/destination/destinations_list/views/destination_error_view.dart';
+import 'package:tecylab_clase_04/presentation/destination/destinations_list/views/destination_initial_view.dart';
+import 'package:tecylab_clase_04/presentation/destination/destinations_list/views/destination_loading_view.dart';
 
 class DestinationsListPage extends StatefulWidget {
-  const DestinationsListPage({super.key});
+  final VoidCallback onTap;
+  final bool darkMode;
+  final GetDestinationsUseCase getDestinationsUseCase;
+
+  const DestinationsListPage({
+    super.key,
+    required this.onTap,
+    required this.darkMode,
+    required this.getDestinationsUseCase,
+  });
 
   @override
   State<DestinationsListPage> createState() => _DestinationsListPageState();
 }
 
 class _DestinationsListPageState extends State<DestinationsListPage> {
-  final List<DestinationModel> destinations = [
-    DestinationModel(
-      countryFrom: 'Desde Lima a',
-      countryTo: 'Medellín',
-      imageCountryTo:
-          'https://media.gettyimages.com/id/1171615860/es/foto/plaza-botero-medellin-colombia.jpg?s=612x612&w=gi&k=20&c=G7uBDexCnC0kH_Fph-qXMMcxY4IVhVsOr5b1SK41LoY=',
-      primaryPrice: 'USD 290.12',
-      secondaryPryce: 'PEN 1,000',
-      priceDiscount: '25% dcto.',
-      dateTravel: 'DIC-MAR-ABR',
-      infoDestination: 'Tasas incluidas - Vuelo directo - 100 cupos',
-      travelMode: 'Ida y vuelta',
-      priceMode: 'Economy',
-    ),
-    DestinationModel(
-      countryFrom: 'Desde Lima a',
-      countryTo: 'Bogotá ciudad de la música y el arte de lo mas diverso',
-      imageCountryTo:
-          'https://media.gettyimages.com/id/1171615860/es/foto/plaza-botero-medellin-colombia.jpg?s=612x612&w=gi&k=20&c=G7uBDexCnC0kH_Fph-qXMMcxY4IVhVsOr5b1SK41LoY=',
-      primaryPrice: 'USD 321.12',
-      secondaryPryce: 'PEN 1,215',
-      priceDiscount: '20% dcto.',
-      dateTravel: 'DIC-MAR-ABR',
-      infoDestination: 'Tasas incluidas - Vuelo directo - 100 cupos',
-      travelMode: 'Solo Ida',
-      priceMode: 'Economy',
-    ),
-  ];
+  DestinationState state = DestinationState.initial();
+
+  void loadDestinations({required bool withError}) async {
+    setState(() => state = DestinationState.loading());
+
+    final result = await widget.getDestinationsUseCase.execute(withError);
+
+    state = result.hasError
+        ? DestinationState.error(result.error)
+        : DestinationState.success(result.destinations);
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text(
-          'Vuelos a todo el mundo',
-          style: textTheme.displayLarge,
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: Text(
+            'Vuelos a todo el mundo',
+            style: themeOf(context).titleText,
+          ),
+          actions: [
+            IconButton(
+              onPressed: widget.onTap,
+              icon: Icon(
+                Icons.brightness_4,
+                color: widget.darkMode ? Colors.white : Colors.black,
+              ),
+            ),
+          ],
         ),
-      ),
-      body: DataDestinationView(destinations: [
-        ...destinations,
-        ...destinations,
-        ...destinations,
-      ]),
-    );
+        backgroundColor: themeOf(context).backgroundScaffold,
+        body: switch (state) {
+          final DestinationInitial _ => DestinationInitialView(
+              onTap: () => loadDestinations(withError: true)),
+          final DestinationLoading _ => const DestinationLoadingView(),
+          final DestinationError error => DestinationErrorView(
+              errorMessage: error.message,
+              onTap: () => loadDestinations(withError: false)),
+          final DestinationSuccess success when success.destinations.isEmpty =>
+            const DestinationEmptyView(),
+          final DestinationSuccess success => DestinationDataView(
+              destinations: success.destinations
+                  .map((entity) => entity.toModel(context))
+                  .toList(),
+            ),
+        });
   }
 }

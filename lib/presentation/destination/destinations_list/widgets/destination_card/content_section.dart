@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tecylab_clase_04/core/theme/app_theme.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/destination_model.dart';
 
 class ContentSection extends StatelessWidget {
@@ -23,7 +24,7 @@ class ContentSection extends StatelessWidget {
         padding: const EdgeInsets.only(right: 15),
         decoration: BoxDecoration(
           borderRadius: borderRadius,
-          color: Colors.white,
+          color: themeOf(context).cardColor,
         ),
         child: _MediaRowAndColumn(
           isPortrait: isPortrait,
@@ -36,11 +37,18 @@ class ContentSection extends StatelessWidget {
               priceModeText: destination.priceMode,
             ),
             const SizedBox(height: 10),
-            PriceContent(
-              primaryPriceText: destination.primaryPrice,
-              secondaryPriceText: destination.secondaryPryce,
-              infoDestinationText: destination.infoDestination,
-            ),
+            isPortrait
+                ? PriceContent(
+                    primaryPriceText: destination.primaryPrice,
+                    secondaryPriceText: destination.secondaryPryce,
+                    infoDestinationText: destination.infoDestination,
+                  )
+                : Flexible(
+                    child: PriceContent(
+                    primaryPriceText: destination.primaryPrice,
+                    secondaryPriceText: destination.secondaryPryce,
+                    infoDestinationText: destination.infoDestination,
+                  )),
             if (hasArrow) const IconRightArrow()
           ],
         ));
@@ -102,18 +110,16 @@ class PriceContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Precio final desde'),
+        Text('Precio final desde', style: themeOf(context).cardText),
         PriceText(priceText: primaryPriceText),
         PriceText(priceText: secondaryPriceText),
         const SizedBox(height: 10),
-        SizedBox(
-          child: Text(infoDestinationText, style: textTheme.bodyLarge),
-        ),
+        Text(infoDestinationText, style: themeOf(context).priceTextFinal),
       ],
     );
   }
@@ -126,14 +132,9 @@ class PriceText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const textMainColor = Color(0xFF10044F);
     return Text(
       priceText,
-      style: const TextStyle(
-        fontSize: 24,
-        color: textMainColor,
-        fontWeight: FontWeight.w800,
-      ),
+      style: themeOf(context).priceText,
     );
   }
 }
@@ -155,32 +156,33 @@ class TravelContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const textMainColor = Color(0xFF10044F);
-    final textTheme = Theme.of(context).textTheme;
+    final textMainColor = themeOf(context).textColor;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(fromDestinationText, style: const TextStyle()),
+        Text(fromDestinationText, style: themeOf(context).cardText),
         SizedBox(
           width: 200,
-          child: Text(toDestinationText,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: textTheme.displayLarge),
+          child: Text(
+            toDestinationText,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: themeOf(context).destinationText,
+          ),
         ),
         const SizedBox(height: 10),
         Row(
           children: [
             ModeToolTip(
                 modeText: travelModeText,
-                color: const Color(0xFFEEEDF9),
+                color: themeOf(context).primaryColor,
                 textColor: textMainColor),
             const SizedBox(width: 8),
             ModeToolTip(
                 modeText: priceModeText,
-                color: const Color(0xFF800F71),
+                color: themeOf(context).secondaryColor,
                 textColor: Colors.white),
           ],
         ),

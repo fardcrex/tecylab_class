@@ -14,6 +14,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+  themexpert: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +31,13 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
+  fonts:
+    - family: EduAUVIC
+      fonts:
+        - asset: assets/fonts/EduAUVIC.ttf
+    - family: Bokor-Regular
+      fonts:
+        - asset: assets/fonts/Bokor-Regular.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
