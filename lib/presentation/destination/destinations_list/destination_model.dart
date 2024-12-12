@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tecylab_clase_04/feature/destinations/domain/destination_entity.dart';
+import 'package:tecylab_clase_04/feature/destinations_ddd/domain/destination_entity.dart';
 
 class DestinationModel {
+  final String id;
   final String countryFrom;
   final String countryTo;
   final String imageCountryTo;
@@ -14,6 +15,7 @@ class DestinationModel {
   final String priceMode;
 
   DestinationModel({
+    required this.id,
     required this.countryFrom,
     required this.countryTo,
     required this.imageCountryTo,
@@ -29,12 +31,17 @@ class DestinationModel {
 
 extension DestinationEntityMapperToModel on DestinationEntity {
   DestinationModel toModel(BuildContext context) {
+    final bool isDesktop = MediaQuery.of(context).size.width > 1024;
     return DestinationModel(
-      countryFrom: 'Desde Lima a',
-      countryTo: name ?? 'Lugar desconocido',
-      imageCountryTo: imageUrl,
-      primaryPrice: 'USD 290.12',
-      secondaryPryce: 'PEN 1,000',
+      id: id,
+      countryFrom: isDesktop
+          ? 'Desde un lugar muy lejano $countryFrom a'
+          : 'Desde $countryFrom a',
+      countryTo: countryTo,
+      imageCountryTo: imageCountryTo,
+      primaryPrice: 'USD ${primaryPrice.toStringAsFixed(2)}',
+      secondaryPryce:
+          isThePriceTheSame() ? '' : 'PEN ${secondaryPrice.toStringAsFixed(2)}',
       priceDiscount: '25% dcto.',
       dateTravel: 'DIC-MAR-ABR',
       infoDestination: 'Tasas incluidas - Vuelo directo - 100 cupos',

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tecylab_clase_04/core/router/go_router/go_router_const.dart';
 import 'package:tecylab_clase_04/core/utils/media_query.dart';
-import 'package:tecylab_clase_04/presentation/destination/destination_detail/destination_detail_page.dart';
+import 'package:tecylab_clase_04/presentation/destination/destination_detail/destinations_detail_router.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/destination_model.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/widgets/widgets.dart';
 
@@ -27,13 +29,17 @@ class DestinationDataView extends StatelessWidget {
                       );
                     }
 
-                    final route = DestinationDetailPage.route(destination);
+                    //   final route = DestinationDetailPage.route(destination);
 
-                    final price = await Navigator.of(context).push(route);
+                    /*    final price = await Navigator.of(context)
+                        .pushNamed('/vuelo_detail', arguments: destination.id); */
 
-                    if (price == null) return;
+                    context.goNamed(DestinationsDetailRouter.routeName,
+                        pathParameters: {
+                          ParemeterKey.destinationId: destination.id.toString(),
+                        });
 
-                    showSnackBar('El precio es $price');
+                    //  showSnackBar('El precio es $price');
                   },
                   child: DestinationCard(
                     destination: destination,

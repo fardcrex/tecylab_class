@@ -25,7 +25,7 @@ class AppTheme extends BaseTheme {
         fontSize: 24,
       );
 
-  TextStyle get errorText => AppTypography.titleText.copyWith(
+  TextStyle get errorText => AppTypography.nunitoRegular.copyWith(
         fontSize: 24,
         color: AppColors.red,
       );
