@@ -11,13 +11,13 @@ class CreateDestinationUseCase {
     required String countryFrom,
     required String countryTo,
     required double primaryPrice,
-    required double secondaryPrice,
+    required double discount,
   }) async {
     return _repository.createDestination(
       countryFrom: countryFrom,
       countryTo: countryTo,
       primaryPrice: primaryPrice,
-      secondaryPrice: secondaryPrice,
+      discount: discount,
     );
   }
 }

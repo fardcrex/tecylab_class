@@ -40,9 +40,8 @@ extension DestinationEntityMapperToModel on DestinationEntity {
       countryTo: countryTo,
       imageCountryTo: imageCountryTo,
       primaryPrice: 'USD ${primaryPrice.toStringAsFixed(2)}',
-      secondaryPryce:
-          isThePriceTheSame() ? '' : 'PEN ${secondaryPrice.toStringAsFixed(2)}',
-      priceDiscount: '25% dcto.',
+      secondaryPryce: 'PEN ${(primaryPrice * 3.5).toStringAsFixed(2)}',
+      priceDiscount: '$discountPercentage% dcto.',
       dateTravel: 'DIC-MAR-ABR',
       infoDestination: 'Tasas incluidas - Vuelo directo - 100 cupos',
       travelMode: 'Ida y vuelta',

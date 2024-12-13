@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tecylab_clase_04/core/theme/app_theme.dart';
+import 'package:tecylab_clase_04/presentation/destination/destination_detail/bloc/destination_delete_dart_bloc.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/bloc/destinations_list_bloc.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/destination_model.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/widgets/destination_card/content_section.dart';
@@ -72,10 +73,44 @@ class DestinationDetailPage extends StatelessWidget {
                   infoDestinationText: destinationOrNull.infoDestination,
                 ),
                 FilledButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(destinationOrNull.primaryPrice);
+                  onPressed: () {
+                    Navigator.of(context).pop(destinationOrNull.primaryPrice);
+                  },
+                  child: const Text('Regresar'),
+                ),
+                BlocConsumer<DestinationDeleteBloc, DestinationDeleteState>(
+                  listener: (context, state) => state.whenOrNull(
+                    success: () {
+                      context.read<DestinationsListBloc>().add(
+                          DestinationsListEvent.delete(
+                              id: destinationOrNull.id));
+                      Navigator.of(context).pop();
+                      return null;
                     },
-                    child: const Text('Regresar'))
+                    error: (failure) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(failure.maybeWhen(
+                            orElse: () => 'Error al eliminar el destino')),
+                      ));
+                      return null;
+                    },
+                  ),
+                  builder: (context, state) {
+                    if (state is LoadingOnDelete) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    return FilledButton(
+                      onPressed: () {
+                        context.read<DestinationDeleteBloc>().add(
+                            DestinationDeleteEvent.delete(
+                                destinationOrNull.id));
+                      },
+                      child: const Text('Eliminar'),
+                    );
+                  },
+                )
               ],
             ),
           ),

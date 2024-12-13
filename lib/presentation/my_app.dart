@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tecylab_clase_04/core/router/go_router/go_router_config.dart';
 import 'package:tecylab_clase_04/core/theme/app_theme.dart';
 import 'package:tecylab_clase_04/feature/destinations_ddd/application/create_destination_use_case.dart';
+import 'package:tecylab_clase_04/feature/destinations_ddd/application/delete_destination_use_case.dart';
 import 'package:tecylab_clase_04/feature/destinations_ddd/application/get_list_destinations_use_case.dart';
 import 'package:tecylab_clase_04/feature/destinations_ddd/domain/interface_destination_repository.dart';
 import 'package:tecylab_clase_04/presentation/create_destination/bloc/create_destination_bloc.dart';
+import 'package:tecylab_clase_04/presentation/destination/destination_detail/bloc/destination_delete_dart_bloc.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/bloc/destinations_list_bloc.dart';
 import 'package:tecylab_clase_04/presentation/destination/destinations_list/cubit/destionations_list_cubit.dart';
 import 'package:tecylab_clase_04/presentation/main/cubit/dark_mode_cubit.dart';
@@ -53,6 +55,11 @@ class MyApp extends StatelessWidget {
                             BlocProvider(
                               create: (context) => CreateDestinationBloc(
                                   CreateDestinationUseCase(
+                                      destinationRepository)),
+                            ),
+                            BlocProvider(
+                              create: (context) => DestinationDeleteBloc(
+                                  DeleteDestinationUseCase(
                                       destinationRepository)),
                             ),
                           ],

@@ -4,18 +4,18 @@ class DestinationEntity {
   final String countryTo;
   final String imageCountryTo;
   final double primaryPrice;
-  final double secondaryPrice;
+  final double discount;
 
   DestinationEntity({
     required this.id,
     required this.countryFrom,
     required this.countryTo,
     required this.primaryPrice,
-    required this.secondaryPrice,
+    required this.discount,
     required this.imageCountryTo,
   });
 
-  bool isThePriceTheSame() {
-    return primaryPrice == secondaryPrice;
+  String get discountPercentage {
+    return ((discount) * 100).toStringAsFixed(1);
   }
 }

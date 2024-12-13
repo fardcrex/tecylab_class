@@ -19,25 +19,25 @@ mixin _$CreateDestinationEvent {
   String get countryFrom => throw _privateConstructorUsedError;
   String get countryTo => throw _privateConstructorUsedError;
   double get primaryPrice => throw _privateConstructorUsedError;
-  double get secondaryPrice => throw _privateConstructorUsedError;
+  double get discount => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String countryFrom, String countryTo,
-            double primaryPrice, double secondaryPrice)
+            double primaryPrice, double discount)
         create,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String countryFrom, String countryTo, double primaryPrice,
-            double secondaryPrice)?
+            double discount)?
         create,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String countryFrom, String countryTo, double primaryPrice,
-            double secondaryPrice)?
+            double discount)?
         create,
     required TResult orElse(),
   }) =>
@@ -76,7 +76,7 @@ abstract class $CreateDestinationEventCopyWith<$Res> {
       {String countryFrom,
       String countryTo,
       double primaryPrice,
-      double secondaryPrice});
+      double discount});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class _$CreateDestinationEventCopyWithImpl<$Res,
     Object? countryFrom = null,
     Object? countryTo = null,
     Object? primaryPrice = null,
-    Object? secondaryPrice = null,
+    Object? discount = null,
   }) {
     return _then(_value.copyWith(
       countryFrom: null == countryFrom
@@ -113,9 +113,9 @@ class _$CreateDestinationEventCopyWithImpl<$Res,
           ? _value.primaryPrice
           : primaryPrice // ignore: cast_nullable_to_non_nullable
               as double,
-      secondaryPrice: null == secondaryPrice
-          ? _value.secondaryPrice
-          : secondaryPrice // ignore: cast_nullable_to_non_nullable
+      discount: null == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -133,7 +133,7 @@ abstract class _$$CreateImplCopyWith<$Res>
       {String countryFrom,
       String countryTo,
       double primaryPrice,
-      double secondaryPrice});
+      double discount});
 }
 
 /// @nodoc
@@ -152,7 +152,7 @@ class __$$CreateImplCopyWithImpl<$Res>
     Object? countryFrom = null,
     Object? countryTo = null,
     Object? primaryPrice = null,
-    Object? secondaryPrice = null,
+    Object? discount = null,
   }) {
     return _then(_$CreateImpl(
       countryFrom: null == countryFrom
@@ -167,9 +167,9 @@ class __$$CreateImplCopyWithImpl<$Res>
           ? _value.primaryPrice
           : primaryPrice // ignore: cast_nullable_to_non_nullable
               as double,
-      secondaryPrice: null == secondaryPrice
-          ? _value.secondaryPrice
-          : secondaryPrice // ignore: cast_nullable_to_non_nullable
+      discount: null == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -182,7 +182,7 @@ class _$CreateImpl implements _Create {
       {required this.countryFrom,
       required this.countryTo,
       required this.primaryPrice,
-      required this.secondaryPrice});
+      required this.discount});
 
   @override
   final String countryFrom;
@@ -191,11 +191,11 @@ class _$CreateImpl implements _Create {
   @override
   final double primaryPrice;
   @override
-  final double secondaryPrice;
+  final double discount;
 
   @override
   String toString() {
-    return 'CreateDestinationEvent.create(countryFrom: $countryFrom, countryTo: $countryTo, primaryPrice: $primaryPrice, secondaryPrice: $secondaryPrice)';
+    return 'CreateDestinationEvent.create(countryFrom: $countryFrom, countryTo: $countryTo, primaryPrice: $primaryPrice, discount: $discount)';
   }
 
   @override
@@ -209,13 +209,13 @@ class _$CreateImpl implements _Create {
                 other.countryTo == countryTo) &&
             (identical(other.primaryPrice, primaryPrice) ||
                 other.primaryPrice == primaryPrice) &&
-            (identical(other.secondaryPrice, secondaryPrice) ||
-                other.secondaryPrice == secondaryPrice));
+            (identical(other.discount, discount) ||
+                other.discount == discount));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, countryFrom, countryTo, primaryPrice, secondaryPrice);
+  int get hashCode =>
+      Object.hash(runtimeType, countryFrom, countryTo, primaryPrice, discount);
 
   /// Create a copy of CreateDestinationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -229,32 +229,32 @@ class _$CreateImpl implements _Create {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String countryFrom, String countryTo,
-            double primaryPrice, double secondaryPrice)
+            double primaryPrice, double discount)
         create,
   }) {
-    return create(countryFrom, countryTo, primaryPrice, secondaryPrice);
+    return create(countryFrom, countryTo, primaryPrice, discount);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String countryFrom, String countryTo, double primaryPrice,
-            double secondaryPrice)?
+            double discount)?
         create,
   }) {
-    return create?.call(countryFrom, countryTo, primaryPrice, secondaryPrice);
+    return create?.call(countryFrom, countryTo, primaryPrice, discount);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String countryFrom, String countryTo, double primaryPrice,
-            double secondaryPrice)?
+            double discount)?
         create,
     required TResult orElse(),
   }) {
     if (create != null) {
-      return create(countryFrom, countryTo, primaryPrice, secondaryPrice);
+      return create(countryFrom, countryTo, primaryPrice, discount);
     }
     return orElse();
   }
@@ -293,7 +293,7 @@ abstract class _Create implements CreateDestinationEvent {
       {required final String countryFrom,
       required final String countryTo,
       required final double primaryPrice,
-      required final double secondaryPrice}) = _$CreateImpl;
+      required final double discount}) = _$CreateImpl;
 
   @override
   String get countryFrom;
@@ -302,7 +302,7 @@ abstract class _Create implements CreateDestinationEvent {
   @override
   double get primaryPrice;
   @override
-  double get secondaryPrice;
+  double get discount;
 
   /// Create a copy of CreateDestinationEvent
   /// with the given fields replaced by the non-null parameter values.

@@ -16,44 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DestinationsListEvent {
-  bool get withError => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withError) load,
+    required TResult Function(String id) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withError)? load,
+    TResult? Function(String id)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withError)? load,
+    TResult Function(String id)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadDestinations value) load,
+    required TResult Function(DeleteDestination value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadDestinations value)? load,
+    TResult? Function(DeleteDestination value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadDestinations value)? load,
+    TResult Function(DeleteDestination value)? delete,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of DestinationsListEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DestinationsListEventCopyWith<DestinationsListEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +61,6 @@ abstract class $DestinationsListEventCopyWith<$Res> {
   factory $DestinationsListEventCopyWith(DestinationsListEvent value,
           $Res Function(DestinationsListEvent) then) =
       _$DestinationsListEventCopyWithImpl<$Res, DestinationsListEvent>;
-  @useResult
-  $Res call({bool withError});
 }
 
 /// @nodoc
@@ -79,27 +76,13 @@ class _$DestinationsListEventCopyWithImpl<$Res,
 
   /// Create a copy of DestinationsListEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? withError = null,
-  }) {
-    return _then(_value.copyWith(
-      withError: null == withError
-          ? _value.withError
-          : withError // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LoadDestinationsImplCopyWith<$Res>
-    implements $DestinationsListEventCopyWith<$Res> {
+abstract class _$$LoadDestinationsImplCopyWith<$Res> {
   factory _$$LoadDestinationsImplCopyWith(_$LoadDestinationsImpl value,
           $Res Function(_$LoadDestinationsImpl) then) =
       __$$LoadDestinationsImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({bool withError});
 }
@@ -166,6 +149,7 @@ class _$LoadDestinationsImpl implements LoadDestinations {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withError) load,
+    required TResult Function(String id) delete,
   }) {
     return load(withError);
   }
@@ -174,6 +158,7 @@ class _$LoadDestinationsImpl implements LoadDestinations {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withError)? load,
+    TResult? Function(String id)? delete,
   }) {
     return load?.call(withError);
   }
@@ -182,6 +167,7 @@ class _$LoadDestinationsImpl implements LoadDestinations {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withError)? load,
+    TResult Function(String id)? delete,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -194,6 +180,7 @@ class _$LoadDestinationsImpl implements LoadDestinations {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadDestinations value) load,
+    required TResult Function(DeleteDestination value) delete,
   }) {
     return load(this);
   }
@@ -202,6 +189,7 @@ class _$LoadDestinationsImpl implements LoadDestinations {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadDestinations value)? load,
+    TResult? Function(DeleteDestination value)? delete,
   }) {
     return load?.call(this);
   }
@@ -210,6 +198,7 @@ class _$LoadDestinationsImpl implements LoadDestinations {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadDestinations value)? load,
+    TResult Function(DeleteDestination value)? delete,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -223,14 +212,154 @@ abstract class LoadDestinations implements DestinationsListEvent {
   const factory LoadDestinations({required final bool withError}) =
       _$LoadDestinationsImpl;
 
-  @override
   bool get withError;
 
   /// Create a copy of DestinationsListEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadDestinationsImplCopyWith<_$LoadDestinationsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteDestinationImplCopyWith<$Res> {
+  factory _$$DeleteDestinationImplCopyWith(_$DeleteDestinationImpl value,
+          $Res Function(_$DeleteDestinationImpl) then) =
+      __$$DeleteDestinationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$DeleteDestinationImplCopyWithImpl<$Res>
+    extends _$DestinationsListEventCopyWithImpl<$Res, _$DeleteDestinationImpl>
+    implements _$$DeleteDestinationImplCopyWith<$Res> {
+  __$$DeleteDestinationImplCopyWithImpl(_$DeleteDestinationImpl _value,
+      $Res Function(_$DeleteDestinationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DestinationsListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteDestinationImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteDestinationImpl implements DeleteDestination {
+  const _$DeleteDestinationImpl({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'DestinationsListEvent.delete(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteDestinationImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of DestinationsListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteDestinationImplCopyWith<_$DeleteDestinationImpl> get copyWith =>
+      __$$DeleteDestinationImplCopyWithImpl<_$DeleteDestinationImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool withError) load,
+    required TResult Function(String id) delete,
+  }) {
+    return delete(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool withError)? load,
+    TResult? Function(String id)? delete,
+  }) {
+    return delete?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool withError)? load,
+    TResult Function(String id)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadDestinations value) load,
+    required TResult Function(DeleteDestination value) delete,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadDestinations value)? load,
+    TResult? Function(DeleteDestination value)? delete,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadDestinations value)? load,
+    TResult Function(DeleteDestination value)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteDestination implements DestinationsListEvent {
+  const factory DeleteDestination({required final String id}) =
+      _$DeleteDestinationImpl;
+
+  String get id;
+
+  /// Create a copy of DestinationsListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeleteDestinationImplCopyWith<_$DeleteDestinationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

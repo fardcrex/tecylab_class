@@ -1,0 +1,39 @@
+{
+  // Use IntelliSense para saber los atributos posibles.
+  // Mantenga el puntero para ver las descripciones de los existentes atributos.
+  // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "tecylab_clase_04 web normal",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["--web-port", "8080"]
+    },
+    {
+      "name": "tecylab_clase_04 Firebase",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_firebase.dart",
+      "args": ["--web-port", "8080"]
+    },
+    {
+      "name": "tecylab_clase_04",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "tecylab_clase_04 (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "tecylab_clase_04 (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]
+}

@@ -20,7 +20,7 @@ class CreateDestinationBloc
         countryFrom: event.countryFrom,
         countryTo: event.countryTo,
         primaryPrice: event.primaryPrice,
-        secondaryPrice: event.secondaryPrice,
+        discount: event.discount,
       );
 
       result.fold(

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tecylab_clase_04/feature/destinations_ddd/application/get_list_destinations_use_case.dart';
 import 'package:tecylab_clase_04/feature/destinations_ddd/domain/destination_entity.dart';
@@ -16,7 +17,8 @@ class DestinationsListBloc
 
   DestinationsListBloc(this._getDestinationsUseCase)
       : super(const DestinationsListState.initial()) {
-    on<LoadDestinations>(_loadDestinations);
+    on<LoadDestinations>(_loadDestinationsOnStream, transformer: restartable());
+    on<DeleteDestination>(_deleteDestination);
   }
 
   FutureOr<void> _loadDestinations(
@@ -31,5 +33,31 @@ class DestinationsListBloc
     );
 
     emit(state);
+  }
+
+  FutureOr<void> _loadDestinationsOnStream(
+      LoadDestinations event, Emitter<DestinationsListState> emit) async {
+    await emit.forEach(
+      _getDestinationsUseCase.executeStream(),
+      onData: (data) {
+        return data.fold(
+            DestinationsListState.error, DestinationsListState.success);
+      },
+    );
+  }
+
+  FutureOr<void> _deleteDestination(
+    DeleteDestination event,
+    Emitter<DestinationsListState> emit,
+  ) {
+    if (state case DestinationsListSuccess success) {
+      final newState = success.copyWith(
+        destinations: success.destinations
+            .where((element) => element.id != event.id)
+            .toList(),
+      );
+
+      emit(newState);
+    }
   }
 }

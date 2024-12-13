@@ -26,6 +26,7 @@ class _CreateDestinationPageState extends State<CreateDestinationPage> {
               content: Text('Destino creado correctamente'),
             ),
           );
+          Navigator.of(context).pop();
         }
         if (state is CreateDestinationStateError) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -112,8 +113,8 @@ class _CreateDestinationPageState extends State<CreateDestinationPage> {
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Precio secundario',
-                    hintText: 'Ingrese el precio secundario',
+                    labelText: 'Descuento',
+                    hintText: 'Ingrese el descuento',
                     prefixIcon: Icon(Icons.luggage),
                   ),
                 ),
@@ -131,7 +132,7 @@ class _CreateDestinationPageState extends State<CreateDestinationPage> {
                               countryFrom: countryFrom,
                               countryTo: countryTo,
                               primaryPrice: double.parse(primaryPrice),
-                              secondaryPrice: double.parse(secondaryPrice),
+                              discount: double.parse(secondaryPrice),
                             ),
                           );
                     },

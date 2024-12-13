@@ -9,18 +9,22 @@ part 'destination_dto.g.dart';
 class DestinationDto with _$DestinationDto {
   factory DestinationDto({
     required String id,
-    @JsonKey(name: 'country_from') required String countryFrom,
-    @JsonKey(name: 'country_to') required String countryTo,
+    required String countryFrom,
+    required String countryTo,
     String? imageCountryTo,
     double? primaryPrice,
-    double? secondaryPrice,
-    double? priceDiscount,
-    String? dateTravel,
-    String? infoDestination,
+    double? discount,
     String? travelMode,
-    double? priceMode,
+    String? priceMode,
   }) = _DestinationDto;
 
   factory DestinationDto.fromJson(Map<String, dynamic> json) =>
       _$DestinationDtoFromJson(json);
+
+  factory DestinationDto.fromSembast(Map<String, dynamic> json, String id) {
+    return DestinationDto.fromJson({
+      ...json,
+      'id': id,
+    });
+  }
 }

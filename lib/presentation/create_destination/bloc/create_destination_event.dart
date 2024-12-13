@@ -6,6 +6,6 @@ class CreateDestinationEvent with _$CreateDestinationEvent {
     required String countryFrom,
     required String countryTo,
     required double primaryPrice,
-    required double secondaryPrice,
+    required double discount,
   }) = _Create;
 }

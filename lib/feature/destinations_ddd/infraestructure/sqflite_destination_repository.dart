@@ -1,42 +1,73 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:sqflite/sqlite_api.dart';
+import 'package:tecylab_clase_04/const/images_mock.dart';
+import 'package:tecylab_clase_04/core/config/sqflite/sqflite_injection.dart';
+import 'package:tecylab_clase_04/feature/destinations_ddd/domain/destination_dto.dart';
 import 'package:tecylab_clase_04/feature/destinations_ddd/domain/destination_failure.dart';
 import 'package:tecylab_clase_04/feature/destinations_ddd/domain/interface_destination_repository.dart';
 
 class SqfliteDestinationRepository implements InterfaceDestinationRepository {
-  final Database database;
+  final SqfliteInjection instance;
 
-  SqfliteDestinationRepository(this.database);
+  static const tableName = 'destinations';
+
+  const SqfliteDestinationRepository(this.instance);
 
   @override
   Future<ResponseUnitDestination> createDestination({
     required String countryFrom,
     required String countryTo,
     required double primaryPrice,
-    required double secondaryPrice,
+    required double discount,
   }) async {
-    await Future.delayed(const Duration(seconds: 1));
+    try {
+      final dto = DestinationDto(
+        id: '',
+        countryFrom: countryFrom,
+        countryTo: countryTo,
+        primaryPrice: primaryPrice,
+        discount: discount,
+        imageCountryTo: destinationImageMock,
+      );
 
-    print('Destination created on sqlflite: $countryFrom, $countryTo');
+      instance.db.insert(tableName, dto.toJson());
 
-    return const Right(unit);
+      return right(unit);
+    } catch (e) {
+      return left(DestinationFailure.unexpectedError(e.toString()));
+    }
   }
 
   @override
   Future<ResponseUnitDestination> deleteDestination(String id) async {
-    await Future.delayed(const Duration(seconds: 1));
+    try {
+      await Future.delayed(const Duration(seconds: 2));
 
-    print('Destination deleted on sqlflite: $id');
+      //throw Exception('Error');
 
-    return const Right(unit);
+      await instance.db.delete(tableName, where: 'id = ?', whereArgs: [id]);
+
+      return right(unit);
+    } catch (e) {
+      return left(DestinationFailure.unexpectedError(e.toString()));
+    }
   }
 
   @override
   Future<ResponseListDestination> getDestinations() async {
-    final dateTimeNow = DateTime.now();
+    try {
+      final response = await instance.db.query(tableName, orderBy: 'id DESC');
 
-    return dateTimeNow.second.isEven
-        ? const Right([])
-        : const Left(DestinationFailure.timeIsNotEven());
+      final destinations =
+          response.map((e) => DestinationDto.fromJson(e)).toList();
+
+      return right(destinations);
+    } catch (e) {
+      return left(DestinationFailure.unexpectedError(e.toString()));
+    }
+  }
+
+  @override
+  Stream<ResponseListDestination> getDestinationsStream() {
+    return Stream.fromFuture(getDestinations());
   }
 }

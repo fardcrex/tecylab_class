@@ -21,18 +21,13 @@ DestinationDto _$DestinationDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DestinationDto {
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'country_from')
   String get countryFrom => throw _privateConstructorUsedError;
-  @JsonKey(name: 'country_to')
   String get countryTo => throw _privateConstructorUsedError;
   String? get imageCountryTo => throw _privateConstructorUsedError;
   double? get primaryPrice => throw _privateConstructorUsedError;
-  double? get secondaryPrice => throw _privateConstructorUsedError;
-  double? get priceDiscount => throw _privateConstructorUsedError;
-  String? get dateTravel => throw _privateConstructorUsedError;
-  String? get infoDestination => throw _privateConstructorUsedError;
+  double? get discount => throw _privateConstructorUsedError;
   String? get travelMode => throw _privateConstructorUsedError;
-  double? get priceMode => throw _privateConstructorUsedError;
+  String? get priceMode => throw _privateConstructorUsedError;
 
   /// Serializes this DestinationDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,16 +47,13 @@ abstract class $DestinationDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'country_from') String countryFrom,
-      @JsonKey(name: 'country_to') String countryTo,
+      String countryFrom,
+      String countryTo,
       String? imageCountryTo,
       double? primaryPrice,
-      double? secondaryPrice,
-      double? priceDiscount,
-      String? dateTravel,
-      String? infoDestination,
+      double? discount,
       String? travelMode,
-      double? priceMode});
+      String? priceMode});
 }
 
 /// @nodoc
@@ -84,10 +76,7 @@ class _$DestinationDtoCopyWithImpl<$Res, $Val extends DestinationDto>
     Object? countryTo = null,
     Object? imageCountryTo = freezed,
     Object? primaryPrice = freezed,
-    Object? secondaryPrice = freezed,
-    Object? priceDiscount = freezed,
-    Object? dateTravel = freezed,
-    Object? infoDestination = freezed,
+    Object? discount = freezed,
     Object? travelMode = freezed,
     Object? priceMode = freezed,
   }) {
@@ -112,22 +101,10 @@ class _$DestinationDtoCopyWithImpl<$Res, $Val extends DestinationDto>
           ? _value.primaryPrice
           : primaryPrice // ignore: cast_nullable_to_non_nullable
               as double?,
-      secondaryPrice: freezed == secondaryPrice
-          ? _value.secondaryPrice
-          : secondaryPrice // ignore: cast_nullable_to_non_nullable
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
               as double?,
-      priceDiscount: freezed == priceDiscount
-          ? _value.priceDiscount
-          : priceDiscount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      dateTravel: freezed == dateTravel
-          ? _value.dateTravel
-          : dateTravel // ignore: cast_nullable_to_non_nullable
-              as String?,
-      infoDestination: freezed == infoDestination
-          ? _value.infoDestination
-          : infoDestination // ignore: cast_nullable_to_non_nullable
-              as String?,
       travelMode: freezed == travelMode
           ? _value.travelMode
           : travelMode // ignore: cast_nullable_to_non_nullable
@@ -135,7 +112,7 @@ class _$DestinationDtoCopyWithImpl<$Res, $Val extends DestinationDto>
       priceMode: freezed == priceMode
           ? _value.priceMode
           : priceMode // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
     ) as $Val);
   }
 }
@@ -150,16 +127,13 @@ abstract class _$$DestinationDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'country_from') String countryFrom,
-      @JsonKey(name: 'country_to') String countryTo,
+      String countryFrom,
+      String countryTo,
       String? imageCountryTo,
       double? primaryPrice,
-      double? secondaryPrice,
-      double? priceDiscount,
-      String? dateTravel,
-      String? infoDestination,
+      double? discount,
       String? travelMode,
-      double? priceMode});
+      String? priceMode});
 }
 
 /// @nodoc
@@ -180,10 +154,7 @@ class __$$DestinationDtoImplCopyWithImpl<$Res>
     Object? countryTo = null,
     Object? imageCountryTo = freezed,
     Object? primaryPrice = freezed,
-    Object? secondaryPrice = freezed,
-    Object? priceDiscount = freezed,
-    Object? dateTravel = freezed,
-    Object? infoDestination = freezed,
+    Object? discount = freezed,
     Object? travelMode = freezed,
     Object? priceMode = freezed,
   }) {
@@ -208,22 +179,10 @@ class __$$DestinationDtoImplCopyWithImpl<$Res>
           ? _value.primaryPrice
           : primaryPrice // ignore: cast_nullable_to_non_nullable
               as double?,
-      secondaryPrice: freezed == secondaryPrice
-          ? _value.secondaryPrice
-          : secondaryPrice // ignore: cast_nullable_to_non_nullable
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
               as double?,
-      priceDiscount: freezed == priceDiscount
-          ? _value.priceDiscount
-          : priceDiscount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      dateTravel: freezed == dateTravel
-          ? _value.dateTravel
-          : dateTravel // ignore: cast_nullable_to_non_nullable
-              as String?,
-      infoDestination: freezed == infoDestination
-          ? _value.infoDestination
-          : infoDestination // ignore: cast_nullable_to_non_nullable
-              as String?,
       travelMode: freezed == travelMode
           ? _value.travelMode
           : travelMode // ignore: cast_nullable_to_non_nullable
@@ -231,7 +190,7 @@ class __$$DestinationDtoImplCopyWithImpl<$Res>
       priceMode: freezed == priceMode
           ? _value.priceMode
           : priceMode // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
     ));
   }
 }
@@ -241,14 +200,11 @@ class __$$DestinationDtoImplCopyWithImpl<$Res>
 class _$DestinationDtoImpl implements _DestinationDto {
   _$DestinationDtoImpl(
       {required this.id,
-      @JsonKey(name: 'country_from') required this.countryFrom,
-      @JsonKey(name: 'country_to') required this.countryTo,
+      required this.countryFrom,
+      required this.countryTo,
       this.imageCountryTo,
       this.primaryPrice,
-      this.secondaryPrice,
-      this.priceDiscount,
-      this.dateTravel,
-      this.infoDestination,
+      this.discount,
       this.travelMode,
       this.priceMode});
 
@@ -258,31 +214,23 @@ class _$DestinationDtoImpl implements _DestinationDto {
   @override
   final String id;
   @override
-  @JsonKey(name: 'country_from')
   final String countryFrom;
   @override
-  @JsonKey(name: 'country_to')
   final String countryTo;
   @override
   final String? imageCountryTo;
   @override
   final double? primaryPrice;
   @override
-  final double? secondaryPrice;
-  @override
-  final double? priceDiscount;
-  @override
-  final String? dateTravel;
-  @override
-  final String? infoDestination;
+  final double? discount;
   @override
   final String? travelMode;
   @override
-  final double? priceMode;
+  final String? priceMode;
 
   @override
   String toString() {
-    return 'DestinationDto(id: $id, countryFrom: $countryFrom, countryTo: $countryTo, imageCountryTo: $imageCountryTo, primaryPrice: $primaryPrice, secondaryPrice: $secondaryPrice, priceDiscount: $priceDiscount, dateTravel: $dateTravel, infoDestination: $infoDestination, travelMode: $travelMode, priceMode: $priceMode)';
+    return 'DestinationDto(id: $id, countryFrom: $countryFrom, countryTo: $countryTo, imageCountryTo: $imageCountryTo, primaryPrice: $primaryPrice, discount: $discount, travelMode: $travelMode, priceMode: $priceMode)';
   }
 
   @override
@@ -299,14 +247,8 @@ class _$DestinationDtoImpl implements _DestinationDto {
                 other.imageCountryTo == imageCountryTo) &&
             (identical(other.primaryPrice, primaryPrice) ||
                 other.primaryPrice == primaryPrice) &&
-            (identical(other.secondaryPrice, secondaryPrice) ||
-                other.secondaryPrice == secondaryPrice) &&
-            (identical(other.priceDiscount, priceDiscount) ||
-                other.priceDiscount == priceDiscount) &&
-            (identical(other.dateTravel, dateTravel) ||
-                other.dateTravel == dateTravel) &&
-            (identical(other.infoDestination, infoDestination) ||
-                other.infoDestination == infoDestination) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
             (identical(other.travelMode, travelMode) ||
                 other.travelMode == travelMode) &&
             (identical(other.priceMode, priceMode) ||
@@ -315,19 +257,8 @@ class _$DestinationDtoImpl implements _DestinationDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      countryFrom,
-      countryTo,
-      imageCountryTo,
-      primaryPrice,
-      secondaryPrice,
-      priceDiscount,
-      dateTravel,
-      infoDestination,
-      travelMode,
-      priceMode);
+  int get hashCode => Object.hash(runtimeType, id, countryFrom, countryTo,
+      imageCountryTo, primaryPrice, discount, travelMode, priceMode);
 
   /// Create a copy of DestinationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -349,16 +280,13 @@ class _$DestinationDtoImpl implements _DestinationDto {
 abstract class _DestinationDto implements DestinationDto {
   factory _DestinationDto(
       {required final String id,
-      @JsonKey(name: 'country_from') required final String countryFrom,
-      @JsonKey(name: 'country_to') required final String countryTo,
+      required final String countryFrom,
+      required final String countryTo,
       final String? imageCountryTo,
       final double? primaryPrice,
-      final double? secondaryPrice,
-      final double? priceDiscount,
-      final String? dateTravel,
-      final String? infoDestination,
+      final double? discount,
       final String? travelMode,
-      final double? priceMode}) = _$DestinationDtoImpl;
+      final String? priceMode}) = _$DestinationDtoImpl;
 
   factory _DestinationDto.fromJson(Map<String, dynamic> json) =
       _$DestinationDtoImpl.fromJson;
@@ -366,27 +294,19 @@ abstract class _DestinationDto implements DestinationDto {
   @override
   String get id;
   @override
-  @JsonKey(name: 'country_from')
   String get countryFrom;
   @override
-  @JsonKey(name: 'country_to')
   String get countryTo;
   @override
   String? get imageCountryTo;
   @override
   double? get primaryPrice;
   @override
-  double? get secondaryPrice;
-  @override
-  double? get priceDiscount;
-  @override
-  String? get dateTravel;
-  @override
-  String? get infoDestination;
+  double? get discount;
   @override
   String? get travelMode;
   @override
-  double? get priceMode;
+  String? get priceMode;
 
   /// Create a copy of DestinationDto
   /// with the given fields replaced by the non-null parameter values.
